@@ -4,6 +4,12 @@ then
         exit
 fi
 
+OS=$(lsb_release -si)
+if [[ $OS != *"Ubuntu"* ]]; then
+        echo "This script run only for Ubuntu"
+        exit
+fi
+
 if [ -z "$1" ]
 then
         echo "Please provide your domain"
