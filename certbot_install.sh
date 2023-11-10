@@ -1,9 +1,23 @@
-sudo su
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root or sudo"
+  exit 0
+fi
+
+if [ -z "$1" ]
+then
+        echo "Please provide your domain"
+        exit 0
+elif [ -z "$2" ]
+then
+        echo "Please provide your email address"
+        exit 0
+fi
+
 apt install python3 python3-venv libaugeas0 -y
 python3 -m venv /opt/certbot/
 /opt/certbot/bin/pip install --upgrade pip
 /opt/certbot/bin/pip install certbot certbot-apache
-# /opt/certbot/bin/pip install certbot certbot-nginx
+ /opt/certbot/bin/pip install certbot certbot-nginx
 ln -s /opt/certbot/bin/certbot /usr/bin/certbot
 
 DOMAIN=$1
