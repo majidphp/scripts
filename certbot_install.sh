@@ -1,16 +1,17 @@
 if [ "$EUID" -ne 0 ]
-  then echo "Please run as root or sudo"
-  exit 0
+then
+        echo "Please run as root or sudo"
+        exit
 fi
 
 if [ -z "$1" ]
 then
         echo "Please provide your domain"
-        exit 0
+        exit
 elif [ -z "$2" ]
 then
         echo "Please provide your email address"
-        exit 0
+        exit
 fi
 
 apt install python3 python3-venv libaugeas0 -y
